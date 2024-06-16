@@ -3,6 +3,7 @@ This setup allows you to deploy contracts quickly and efficiently without needin
 
 ## ERRORS
 1.  index.js not found
+   
 ![Screen Shot 2024-06-16 at 16 57](https://github.com/Sequence-94/voting-dapp-deployment/assets/53806574/709a3add-6898-48d8-b611-b0352d752d5a)
 
 Cause: aws could not find the index.js that I had mentioned in my package.json so I had to rename it from ContractDeployment.js to index.js
@@ -12,12 +13,24 @@ Like this:
 
 
 2.  Must be authenticated!
-3.  
+   
 ![Screen Shot 2024-06-16 at 17 25](https://github.com/Sequence-94/voting-dapp-deployment/assets/53806574/bde049ca-5846-4043-863a-515eb72a946e)
 
 
 Cause: the hhtps endpoint was incorrectly put as "https://eth-holesky.g.alchemy.com/v2/YOUR_HOLESKY_PROJECT_ID" and aws does not know how to render my envirnment variable in this manner.
-Fixed the issue like this:
+First I tried to change it like this 
+```
+ [YOUR_HOLESKY_PROJECT_ID is not defined](https://eth-holesky.g.alchemy.com/v2/${YOUR_HOLESKY_PROJECT_ID)}
+```
+But that was incorrect as I got an back this error:
+```
+2024-06-16T11:52:42.827Z	924bd9c6-de8c-44db-a4eb-185787521f78	ERROR	Error deploying contract: ReferenceError: YOUR_HOLESKY_PROJECT_ID is not defined
+    at deploy (/var/task/index.js:10:94)
+    at exports.handler (/var/task/index.js:27:39)
+    at Runtime.handleOnceNonStreaming (file:///var/runtime/index.mjs:1173:29)
+```
+Final Resolution:
+
 ![Screen Shot 2024-06-16 at 17 29](https://github.com/Sequence-94/voting-dapp-deployment/assets/53806574/afc58899-444a-4960-8573-d202ad433659)
 
 
