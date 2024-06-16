@@ -33,5 +33,22 @@ Final Resolution:
 
 ![Screen Shot 2024-06-16 at 17 29](https://github.com/Sequence-94/voting-dapp-deployment/assets/53806574/afc58899-444a-4960-8573-d202ad433659)
 
+3.  Cannot read properties of undefined (reading 'JsonRpcProvider')
 
-   
+```
+2024-06-16T13:56:43.413Z	b9cf6534-c2ae-4475-ab50-555672937686	ERROR	Error deploying contract: TypeError: Cannot read properties of undefined (reading 'JsonRpcProvider')
+    at deploy (/var/task/index.js:10:43)
+    at exports.handler (/var/task/index.js:29:39)
+    at Runtime.handleOnceNonStreaming (file:///var/runtime/index.mjs:1173:29)
+```
+Cause: EthersJS has an issue Listening to evens with nodejs
+
+Final Resoultion:
+I downgraded my "ethers" to version 5.7.2 in the package.json then I removed node_modules folder and ran
+
+![Screen Shot 2024-06-16 at 17 48](https://github.com/Sequence-94/voting-dapp-deployment/assets/53806574/e8f3bd29-b259-48d3-8dc9-a48733357329)
+
+```
+npm install 
+```
+
